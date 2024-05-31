@@ -63,49 +63,20 @@ int main() {
     }
 }
 
-listOfInt* merge(listOfInt* first, listOfInt* second){
-    if(!first){
-        return second;
+void sortOflistOfIntBubbleSort(listOfInt** list) {
+    listOfInt* node = *list;
+    while(node != nullptr) {
+        listOfInt* next = node->next;
+        while(next != nullptr) {
+            if(node->value < next->value) {
+                long long int temp = node->value;
+                node->value = next->value;
+                next->value = temp;
+            }
+            next = next->next;
+        }
+        node = node->next;
     }
-    if(!second){
-        return first;
-    }
-    if(first->value > second->value){
-        first->next = merge(first->next, second);
-        return first;
-    }
-    else{
-        second->next = merge(first, second->next);
-        return second;
-    }
-}
-
-listOfInt* getMiddle(listOfInt* head){
-    if(!head){
-        return head;
-    }
-
-    listOfInt* slow = head, *fast = head;
-    while (fast->next && fast->next->next) {
-        slow = slow->next;
-        fast = fast->next->next;
-    }
-    return slow;
-}
-
-void sortOflistOfIntMergeSort(listOfInt** headRef) {
-    listOfInt* head = *headRef;
-    if(!head || !head->next) {
-        return;
-    }
-    listOfInt* middle = getMiddle(head);
-    listOfInt* nextOfMiddle = middle->next;
-    middle->next = nullptr;
-
-    sortOflistOfIntMergeSort(&head);
-    sortOflistOfIntMergeSort(&nextOfMiddle);
-
-    *headRef = merge(head, nextOfMiddle);
 }
 
 
@@ -120,7 +91,7 @@ void task1(Graph* graphs) {
         node = node->next;
     }
     //odwrotnie
-    sortOflistOfIntMergeSort(&list);
+    sortOflistOfIntBubbleSort(&list);
     printListOfInt(list);
     printf("\n");
     clearListOfInt(list);
