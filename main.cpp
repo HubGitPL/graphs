@@ -4,24 +4,15 @@
 #include <numeric>
 #include "Graph.h"
 
-#define NOT_VISITED 0
-#define ALREADY_VISITED 1
-
-#define UNCOLORED 0
-#define RED 1
-#define BLUE 2
-
-#define BIG_INT 2147483646
+#include "Defines.h"
 
 using namespace std;
-
 /*
  * Learn C the Hard Way: Practical Exercises on the Computational Subjects You Keep Avoiding (Like C) Zed A. Shaw
  * Thomas H Cormen Introducing to Alghorithms
  * https://medium.com/@arifimran5/fast-and-slow-pointer-pattern-in-linked-list-43647869ac99
  * lecture slides: bubble sort and merge sort algorithms
  */
-
 void task1(Graph* graphs);
 void task2(Graph* graphs);
 void task3(Graph* graphs);
@@ -62,7 +53,6 @@ int main() {
         deleteGraph(graph);
     }
 }
-
 void sortOflistOfIntBubbleSort(listOfInt** list) {
     listOfInt* node = *list;
     while(node != nullptr) {
@@ -78,19 +68,15 @@ void sortOflistOfIntBubbleSort(listOfInt** list) {
         node = node->next;
     }
 }
-
-
 void task1(Graph* graphs) {
     //lista long long int
     listOfInt* list = createListOfInt();
-
     ListNode* node = graphs->vertices->first;
     while(node != nullptr) {
         Vertex* vertex = (Vertex*)(node->value);
         pushBackListOfInt(&list, vertex->neighbours->counter);
         node = node->next;
     }
-    //odwrotnie
     sortOflistOfIntBubbleSort(&list);
     printListOfInt(list);
     printf("\n");
@@ -99,9 +85,6 @@ void task1(Graph* graphs) {
 void bfs(Graph* graph, long long int vertex, int* visited) {
     if(visited[vertex] == NOT_VISITED) {
         visited[vertex] = ALREADY_VISITED;
-        // Casts the vertex at the given index in the graph's vertices list to a Vertex pointer.
-        // This is done using the getElementVoid function, which retrieves an element from a list at a given index.
-        // The retrieved element is a void pointer, so it needs to be cast to a Vertex pointer before it can be used.
         Vertex* vertexPtr = (Vertex*)(getElementVoid(graph->vertices, vertex));
         ListNode* node = vertexPtr->neighbours->first;
         while(node != nullptr) {
@@ -115,7 +98,6 @@ void bfs(Graph* graph, long long int vertex, int* visited) {
 }
 void task2(Graph* graphs) {
     //bfs nNależy więc puścić algorytm przechodzący po grafie z pierwszego wierzchołka, następnie z innego, który nie został jeszcze odwiedzony, i tak dalej.
-
         long long int numberOfComponents = 0;
         //dynamic table
         long long int numberOfVertices = graphs->vertices->counter;
@@ -153,7 +135,6 @@ bool colouring(Graph* graphs, int vertex, int* colors, int color) {
     }
     return true;
 }
-
 void task3(Graph* graphs) {
     int numberOfVertices = graphs->numberOfVertices;
     int* colors = new int[numberOfVertices];
