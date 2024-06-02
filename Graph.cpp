@@ -38,14 +38,6 @@ void pushBackListOfInt(listOfInt** list, long long int value) {
     }
 }
 
-long long int getElementListOfInt(listOfInt* list, int index) {
-    listOfInt* node = list;
-    for(int i = 0; i < index; i++) {
-        node = node->next;
-    }
-    return node->value;
-}
-
 void printListOfInt(listOfInt* list) {
     listOfInt* node = list;
     while(node != NULL) {

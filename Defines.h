@@ -12,6 +12,4 @@
 #define RED 1
 #define BLUE 2
 
-#define BIG_INT 2147483646
-
 #endif //GRAPHS_DEFINES_H

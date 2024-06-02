@@ -36,7 +36,6 @@ Graph* createGraph(long long int numberOfVertices);
 Vertex* createVertex();
 listOfInt *createListOfInt();
 void pushBackListOfInt(listOfInt** list, long long int value);
-long long int getElementListOfInt(listOfInt* list, int index);
 void printListOfInt(listOfInt* list);
 void clearListOfInt(listOfInt* list);
 void addVertex(Graph* graph, long long int numberOfNeighbours);
